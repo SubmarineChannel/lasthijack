@@ -119,9 +119,9 @@ $(window).resize(function() {
 <body>
 <div id="container">
 <video id="video" autoplay="autoplay" poster="video/index.files/html5video/fps_lasthijack_interactive_852x480_%281%29.jpg">
-<source src="video/Last Hijack v01.mp4" type="video/mp4" />
-<source src="video/Last_Hijack_v01.webm" type="video/webm" />
-<source src="video/Last_Hijack_v01.ogg" type="video/ogg" />
+<source src="video/LastHijack.mp4" type="video/mp4" />
+<!--source src="video/Last_Hijack_v01.webm" type="video/webm" />
+<source src="video/Last_Hijack_v01.ogg" type="video/ogg" /-->
 <!--source src="video/index.files/html5video/fps_lasthijack_interactive_852x480_%281%29.m4v" type="video/mp4" />
 <source src="video/index.files/html5video/fps_lasthijack_interactive_852x480_%281%29.webm" type="video/webm" />
 <source src="video/index.files/html5video/fps_lasthijack_interactive_852x480_%281%29.ogv" type="video/ogg" />
