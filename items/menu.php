@@ -1,9 +1,17 @@
 <?php
 	$itemArray["menu"] = array(
-		"start" => 10,
-		"end" => 250,
-		"onStart" => "$('#menu').fadeIn(1000); ",
-		"onEnd" => "$('#menu').fadeOut(1000); ",
+		"popcorn" => '
+			popcorn.code({
+				start: 5,
+				end: 250,
+				onStart: function( options ) {
+					$("#menu").slideDown(1000);
+				},
+				onEnd: function(){
+					$("#menu").slideUp(1000);
+				}
+			});
+		',
 		"content" => '	<table width="100%">
 							<td><img src="images/icons/home.png" /></td>
 							<td><img src="images/icons/badge.png" /></td>

@@ -1,8 +1,7 @@
 <?php
 	/*
 	$itemArray["<item ID>"] = array(
-		"start" => <start Time>,
-		"end" => <end Time>,
+		"popcorn" => <popcorn javascript code>,
 		"RelativePosLeft" => <position left>,
 		"RelativePosTop" => <position top>,
 		"content" => "<html content>",

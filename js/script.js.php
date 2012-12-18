@@ -12,20 +12,9 @@ Popcorn( function(){
 	var popcorn = Popcorn.smart("#video");
 	<?php
 	foreach($itemArray as $key => $var){
-		$onstart = (isset($var['onStart']))?$var['onStart']:'$("#'.$key.'").show();';
-		$onend = (isset($var['onEnd']))?$var['onEnd']:'$("#'.$key.'").hide();';
-		echo '
-		popcorn.code({
-			start: '.$var['start'].',
-			end: '.$var['end'].',
-			onStart: function( options ) {
-				'.$onstart.'
-			},
-			onEnd: function( options ) {
-				'.$onend.'
-			}
-		});
-		';
+		if(isset($var['popcorn'])){
+			echo $var['popcorn'];
+		}
 	}
 	?>
 	popcorn.code({
@@ -33,19 +22,22 @@ Popcorn( function(){
 		end:1,
 		onStart: function( options ) {
 		  setVideoPosition();
-        }
+		}
 	});
-	
 	popcorn.on( "timeupdate", function() {
 		//do something
+		<?php 
+		foreach($itemArray as $key => $var){
+			if(isset($var['ontimeupdate']))echo $var['ontimeupdate'];
+		}
+		?>
 	});
-});
-
-<?php 
+	<?php 
 	foreach($itemArray as $key => $var){
 		if(isset($var['javascript']))echo $var['javascript'];
 	}
-?>
+	?>
+});
 
 function positionItems(){
 <?php 
