@@ -7,9 +7,9 @@ foreach (glob("../items/*.php") as $filename){
 }
 ?>
 
-var videoWidth, videoHeight;
+var videoWidth, videoHeight, popcorn;
 Popcorn( function(){
-	var popcorn = Popcorn.smart("#video");
+	popcorn = Popcorn("#video", {frameAnimation: true});
 	<?php
 	foreach($itemArray as $key => $var){
 		if(isset($var['popcorn'])){
@@ -32,12 +32,13 @@ Popcorn( function(){
 		}
 		?>
 	});
-	<?php 
-	foreach($itemArray as $key => $var){
-		if(isset($var['javascript']))echo $var['javascript'];
-	}
-	?>
 });
+
+<?php 
+foreach($itemArray as $key => $var){
+	if(isset($var['javascript']))echo $var['javascript'];
+}
+?>
 
 function positionItems(){
 <?php 

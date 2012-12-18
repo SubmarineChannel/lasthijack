@@ -2,8 +2,8 @@
 	$itemArray["overlay"] = array(
 		"popcorn" => '
 			popcorn.code({
-				start: 10,
-				end: 30,
+				start: 60,
+				end: 70,
 				onStart: function( options ) {
 					popcorn.pause(); $("#overlay").show();
 				}
