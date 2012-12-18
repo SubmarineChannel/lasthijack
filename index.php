@@ -22,7 +22,8 @@
 </video>
 <?php
 foreach($itemArray as $key => $var){
-	if(isset($var['content']))echo '<div class="'.$var['class'].'" id="'.$key.'"><div>'.$var['content'].'</div></div>';
+	$id = isset($var['id'])?$var['id']:$key;
+	if(isset($var['content']))echo '<div class="'.$var['class'].'" id="'.$id.'"><div>'.$var['content'].'</div></div>';
 }
 ?>
 </div>

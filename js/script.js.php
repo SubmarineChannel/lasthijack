@@ -43,8 +43,9 @@ foreach($itemArray as $key => $var){
 function positionItems(){
 <?php 
 	foreach($itemArray as $key => $var){
-		if(isset($var['RelativePosLeft']))echo '$("#'.$key.'").css("margin-left", ('.$var['RelativePosLeft'].'-50)*(videoWidth/100));';
-		if(isset($var['RelativePosTop']))echo '$("#'.$key.'").css("margin-top", ('.$var['RelativePosTop'].'-50)*(videoHeight/100));';
+		$id = isset($var['id'])?$var['id']:$key;
+		if(isset($var['RelativePosLeft']))echo '$("#'.$id.'").css("margin-left", ('.$var['RelativePosLeft'].'-50)*(videoWidth/100));';
+		if(isset($var['RelativePosTop']))echo '$("#'.$id.'").css("margin-top", ('.$var['RelativePosTop'].'-50)*(videoHeight/100));';
 	}
 ?>
 }

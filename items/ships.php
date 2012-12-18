@@ -3,7 +3,7 @@
 		"popcorn" => '
 			popcorn.ships({
 				start: 5,
-				end:11,
+				end:10,
 				framerate: 20,
 				timeAfterAnimation: 4
 			});

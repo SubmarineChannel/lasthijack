@@ -12,8 +12,8 @@
 		',
 		"class" => "timeline",
 		"css" => '
-			#timeline{position:absolute; width:100%; bottom:0px; left:0px; height:10px; background:#ccc; opacity:.5}
-			#progress{position:absolute; left:0px; top:1px; height:8px; width:0%; overflow:hidden; background:#000}
+			#timeline{position:absolute; width:100%; bottom:0px; left:0px; height:8px; background:#ccc; opacity:.5}
+			#progress{position:absolute; left:0px; top:1px; height:6px; width:0%; overflow:hidden; background:#000}
 		',
 		"javascript" => '
 			(function (Popcorn) {  
