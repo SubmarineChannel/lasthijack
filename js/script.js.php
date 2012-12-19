@@ -22,6 +22,11 @@ Popcorn( function(){
 		end:1,
 		onStart: function( options ) {
 		  setVideoPosition();
+		  <?php 
+			foreach($itemArray as $key => $var){
+				if(isset($var['onstart']))echo $var['onstart'];
+			}
+		  ?>
 		}
 	});
 	popcorn.on( "timeupdate", function() {
@@ -60,4 +65,9 @@ function setVideoPosition(){
 
 $(window).resize(function() {
 	setVideoPosition();
+	<?php 
+	foreach($itemArray as $key => $var){
+		if(isset($var['onresize']))echo $var['onresize'];
+	}
+	?>
 });

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Sprite Sheet</title>
+	<script src="js/jquery.min.js" ></script>
+	<style>
+		#sprite{position:absolute; width:400px; height:400px; background:url(images/spriteSheets/location_sprite.png) 0px 0px no-repeat; overflow:hidden}
+	</style>
+	<script>
+	var spriteWidth = 400;
+	var spriteHeight = 400;
+	var repeat = false;
+	var spriteArr = new Array(2000, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 2000);
+	var numsprites = spriteArr.length;
+	var spriteNum = 0;
+	showSprite();
+	
+	function showSprite(){
+		$("#sprite").css("background-position", spriteWidth*spriteNum*-1);
+		setTimeout(function(){
+			spriteNum++;
+			if(spriteNum < numsprites){
+				showSprite();
+			} else {
+				if(repeat){
+					spriteNum = 0;
+					showSprite();
+				}
+			}
+		}, spriteArr[spriteNum]
+		);
+	}
+	</script>
+</head>
+<body>
+<div id="sprite"></div>
+</body>
+</html>

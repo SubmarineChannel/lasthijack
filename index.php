@@ -23,7 +23,9 @@
 <?php
 foreach($itemArray as $key => $var){
 	$id = isset($var['id'])?$var['id']:$key;
-	if(isset($var['content']))echo '<div class="'.$var['class'].'" id="'.$id.'"><div>'.$var['content'].'</div></div>';
+	$class = isset($var['class'])?$var['class']:"";
+	if(isset($var['content']))echo '<div class="'.$class.'" id="'.$id.'"><div>'.$var['content'].'</div></div>';
+	if(isset($var['extrahtml']))echo $var['extrahtml'];
 }
 ?>
 </div>

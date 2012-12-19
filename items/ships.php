@@ -1,74 +1,127 @@
 <?php
 	$itemArray["ships"] = array(
 		"popcorn" => '
-			popcorn.ships({
-				start: 5,
-				end:10,
+			popcorn.code({
+				start: 10,
+				end:20,
+				onStart: function(){
+					$("#pirate").show();
+				},
+				onEnd: function(){
+					$("#pirate").hide();
+				},
 				framerate: 20,
 				timeAfterAnimation: 4
 			});
 		',
-		"RelativePosLeft" => 10,
-		"RelativePosTop" => 10,
+		"onresize" => 'scaleShips();',
+		"onstart" => 'scaleShips();',
 		"content" => '
-			<div class="ship" id="ship1"><img src="images/ships/ship1.png" /></div>
-			<div class="ship" id="ship2"><img src="images/ships/ship2.png" /></div>
-			<div class="ship" id="ship3"><img src="images/ships/ship3.png" /></div>
-			<div class="ship" id="ship4"><img src="images/ships/ship4.png" /></div>
+			<h1>Current Hijacks</h1>
+			<div style="height:841px; width:238px; left:0px; top:0px; position:absolute; margin-right:10px; margin-top:70px">
+				<div class="shiptext ship1"><div>6 bulk-type carriers</div></div>
+				<div class="shiptext ship2"><div>8 dhows (small wooden ships)</div></div>
+				<div class="shiptext ship3"><div>1 liquid petroleum gas carrier</div></div>
+				<div class="shiptext ship4"><div>2 yachts</div></div>
+				<div class="shiptext ship5"><div>14 fishing vessels</div></div>
+				<div class="shiptext ship6"><div>4 tankers</div></div>
+				<div class="shiptext ship7"><div>12 cargo vessels of varous types</div></div>
+				<div class="shiptext ship8"><div>3 other vessels</div></div>
+				<div class="shiptext ship9"><div>1 tug boat</div></div>
+			</div>
+			<div style="height:841px; width:562px; left:248px; top:0px; position:absolute; overflow:hidden; margin-top:70px">
+				<div class="ship ship1" id="ship1"><img src="images/ships/ships_bulk-type.png" /></div>
+				<div class="ship ship2" id="ship2"><img src="images/ships/ships_dhows.png" /></div>
+				<div class="ship ship3" id="ship3"><img src="images/ships/ships_liquid-carrier.png" /></div>
+				<div class="ship ship4" id="ship4"><img src="images/ships/ships_yachts.png" /></div>
+				<div class="ship ship5" id="ship5"><img src="images/ships/ships_fishingvessels.png" /></div>
+				<div class="ship ship6" id="ship6"><img src="images/ships/ships_tankers.png" /></div>
+				<div class="ship ship7" id="ship7"><img src="images/ships/ships_cargovessels.png" /></div>
+				<div class="ship ship8" id="ship8"><img src="images/ships/ships_othervessels.png" /></div>
+				<div class="ship ship9" id="ship9"><img src="images/ships/ships_tugboat.png" /></div>
+			</div>
 		',
-		"class" => "item",
+		"extrahtml" => '<img id="pirate" src="images/icons/switch_icon.png" />',
 		"css" => '
-			.ship{position:absolute; left:-150px; width:322px; height:50px; display:none; text-align:right}
-			#ship1{top:50px}
-			#ship2{top:120px}
-			#ship3{top:190px}
-			#ship4{top:260px}
+			.ship{position:absolute; left:-562px; width:562px; display:none; text-align:left}
+			.shiptext{text-align:right; font-weight:bold;}
+			.shiptext div{margin-top:2px;}
+			.ship1{height:159px; top:0px}
+			.ship2{height:102px; top:159px}
+			.ship3{height:39px; top:261px}
+			.ship4{height:25px; top:300px}
+			.ship5{height:103px; top:325px}
+			.ship6{height:108px; top:428px}
+			.ship7{height:246px; top:536px}
+			.ship8{height:31px; top:782px}
+			.ship9{height:31px; top:813px}
+			#ships{
+				position:absolute;
+				background-color:rgba(255,255,255,0.8);
+				width:850px;
+				height:920px;
+				top:25px;
+				left:25px;
+				padding:10px;
+				padding-left:30px;
+				-webkit-transform: scale(0.7);
+				-moz-transform: scale(0.7);
+				-ms-transform: scale(0.7);
+				-o-transform: scale(0.7);
+				display:none;
+			}
+			#ships h1{margin:0}
+			#pirate{display:none; position:absolute; left:50%; top:50%; margin-left:-142px; margin-top:-125px; cursor:pointer;}
 		',
 		"javascript" => '
-			(function (Popcorn) {  
-			  Popcorn.plugin( "ships" , function( options ) {
-				// do stuff
-				// this refers to the popcorn object
-			 
-				// You are required to return an object
-				// with a start and end property
-				
-				var fr = 0;
-				return {
-				  _setup : function( options ){
-					
-				  },
-				  start: function(event, options){
-					var that = this;
-					var totaltime = (options.end - options.start)*1000;
-					var pership = (totaltime-(options.timeAfterAnimation*1000))/4;
-					$("#ships").show(function(){
-						$("#ship1").show().animate({"left": "+=150px"}, pership, function(){
-							$("#ship2").show().animate({"left": "+=150px"}, pership, function(){
-								$("#ship3").show().animate({"left": "+=150px"}, pership, function(){
-									$("#ship4").show().animate({"left": "+=150px"}, pership, function(){
-										
+			$("document").ready(function(){
+				$("#pirate").live("click", function(){
+					showShips(500);
+				});
+				$("#ships").live("click", function(){
+					$("#ships").fadeOut();
+					popcorn.play();
+				});
+			});
+			
+			function scaleShips(){
+				var containerHeight = $("#container").height();
+				var shipHeight = 1000;
+				var shipWidth = 800
+				var scale = containerHeight/shipHeight;	
+				$("#ships").css("-webkit-transform", "scale("+scale+")");
+				$("#ships").css("-moz-transform", "scale("+scale+")");
+				$("#ships").css("-ms-transform", "scale("+scale+")");
+				$("#ships").css("-o-transform", "scale("+scale+")");
+				$("#ships").css("transform", "scale("+scale+")");
+				$("#ships").css("margin-left", (shipWidth-((scale*shipWidth)))*-0.5);
+				$("#ships").css("margin-top", (shipHeight-((scale*shipHeight)))*-0.5);
+			}
+			function showShips(pership){
+				$("#pirate").hide();
+				popcorn.pause();
+				$("#ships").show(function(){
+					$("#ship1").show().animate({"left": "+=562px"}, pership, function(){
+						$("#ship2").show().animate({"left": "+=562px"}, pership, function(){
+							$("#ship3").show().animate({"left": "+=562px"}, pership, function(){
+								$("#ship4").show().animate({"left": "+=562px"}, pership, function(){
+									$("#ship5").show().animate({"left": "+=562px"}, pership, function(){
+										$("#ship6").show().animate({"left": "+=562px"}, pership, function(){
+											$("#ship7").show().animate({"left": "+=562px"}, pership, function(){
+												$("#ship8").show().animate({"left": "+=562px"}, pership, function(){
+													$("#ship9").show().animate({"left": "+=562px"}, pership, function(){
+									
+													});
+												});
+											});
+										});
 									});
 								});
 							});
 						});
 					});
-				  },
-				  end: function(event, options){
-					$("#ships").hide();
-				  },
-				  frame: function(){
-					fr++;
-					var numframes = (options.framerate)?Math.round((100/options.framerate)*0.6):6;
-					if(fr >= numframes){
-						//frame action
-						
-						fr = 0;
-					}
-				  }
-				};
-			  });
-			})(Popcorn);
+				});
+			}
 		'
 	);
 ?>
