@@ -2,8 +2,8 @@
 	$itemArray["timer"] = array(
 		"popcorn" => '
 			popcorn.timer({
-				start: 1,
-				end:6,
+				start: 150,
+				end:160,
 				framerate: 20,
 				id: "timer1"
 			});
@@ -64,7 +64,7 @@
 			})(Popcorn);
 			$("document").ready(function(){
 				$("#timer1").live("click", function(){
-					popcorn.currentTime(150);
+					popcorn.currentTime(179.3);
 				});
 			});
 		'
