@@ -24,8 +24,8 @@ $itemArray["live-piracy-feed"] = array(
 			
 			position: fixed;
 			bottom: 0;
-			width:14em;
-			height:24em;
+			width:24em;
+			height:7.5em;
 			right:0;
 			display: none;
 			
@@ -68,7 +68,7 @@ $itemArray["live-piracy-feed"] = array(
 		#live-piracy-feed-content {
 			position: relative;
 			overflow: hidden;
-			height: 22em;
+			height: 5.5em;
 			margin: 0;
 			padding: 0;
 			border: 0;
@@ -82,26 +82,36 @@ $itemArray["live-piracy-feed"] = array(
 			margin: 0;
 			padding: 0;
 			border: 0;
-			height: 22em;
+			height: 9em;
 			box-sizing: border-box;
 		}
 		.live-piracy-feed-item {
-			height: 22em;
+			height: 5.5em;
 			margin: 0;
 			padding: 0;
 			border: 0;
 			box-sizing: border-box;
 		}
 		.live-piracy-feed-item-date {
-			font-size: 0.6em;
+			font-size: 0.5.5em;
 			font-style: italic;
 			margin: 0;
 			padding: 0;
 			border: 0;
 			box-sizing: border-box;
+      display: inline-block;
 		}
 		.live-piracy-feed-item-location {
 			font-size: 0.6em;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			box-sizing: border-box;
+      display: inline-block;
+		}
+    .live-piracy-feed-item-excerpt {
+			font-size: 0.75em;
+      height: 5.5em;
 			margin: 0;
 			padding: 0;
 			border: 0;
@@ -113,6 +123,7 @@ $itemArray["live-piracy-feed"] = array(
 			padding: 0;
 			border: 0;
 			box-sizing: border-box;
+      display: none;
 		}
 	',
 	"javascript" => '
@@ -136,6 +147,7 @@ $itemArray["live-piracy-feed"] = array(
 			var date = data.substring(0, dateSeperatorPos),
 				position = data.substring(positionStartPos + 5, data.indexOf(",")),
 				location = data.substring(data.indexOf("Posn:", data.indexOf(",")), breakPos),
+        excerpt = data.substr(breakPos + 4, 137) + "...",
 				content = data.substring(breakPos + 4);
 			
 			// Update location
@@ -148,8 +160,9 @@ $itemArray["live-piracy-feed"] = array(
 			}
 			
 			// Create and append the elements
-			_this.element.append("<div class=\"live-piracy-feed-item-date\">" + date + "</div>");
+			//_this.element.append("<div class=\"live-piracy-feed-item-date\">" + date + "</div>");
 			_this.element.append("<div class=\"live-piracy-feed-item-location\">" + location + "</div>");
+      _this.element.append("<div class=\"live-piracy-feed-item-excerpt\">" + excerpt + "</div>");
 			_this.element.append("<div class=\"live-piracy-feed-item-content\">" + content + "</div>");
 		};
 		
@@ -201,12 +214,12 @@ $itemArray["live-piracy-feed"] = array(
 			setTimeout(function() {
 				// Move container number of pixels up of the current item
 				_this.container.animate({
-						top: "-=22em"
+						top: "-=5.5em"
 					},
 					350,
 					_this.moveNextComplete()
 				);
-			}, 30000);
+			}, 10000);
 		};
 		
 		this.moveNextComplete = function() {
