@@ -39,22 +39,13 @@ $itemArray["live-piracy-feed"] = array(
 			background:#ccc; 
 			opacity:.5;
 			padding: 0;
-		}
-		#live-piracy-feed-toggle {
-			position: absolute;
-			margin: 0;
-			border: 0;
-			padding: 0;
-			box-sizing: border-box;
-			top: 0.5em;
-			right: 0.5em;
-			cursor: pointer;
-			cursor: hand;
-			font-size: 0.75em;
+      -moz-border-radius: 4px 0 0 0;
+      -webkit-border-radius: 4px 0 0 0;
+      border-radius: 4px 0 0 0;
 		}
 		#live-piracy-feed-header {
-			margin-left: 1.25em;
-			margin-right: 1.25em;
+			margin-left: 0.625em;
+			margin-right: 0.625em;
 			margin-top: 0.5em;
 			margin-bottom: 0;
 			
@@ -81,8 +72,8 @@ $itemArray["live-piracy-feed"] = array(
 			border: 0;
 			box-sizing: border-box;
 			
-			margin-left: 1.25em;
-			margin-right: 1.25em;
+			margin-left: 0.625em;
+			margin-right: 0.625em;
 		}
 		#live-piracy-feed-item-container {
 			position: relative;

@@ -9,6 +9,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>The Last Hijack</title>
+  <script src="js/modernizr.js" type="text/javascript"></script>
 	<script src="js/popcorn-complete.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="css/demos.css" type="text/css" media="screen" />
 	<script src="js/jquery.min.js" ></script>

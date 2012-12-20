@@ -1,34 +1,42 @@
 <?php
 	$itemArray["timer-round"] = array(
+    /*
 		"popcorn" => '
 			popcorn.timerRound({
 				start: 5,
 				end: 15,
 				framerate: 20,
-				id: "timer-round1"
+				id: "timer-round1",
+        infoText: "Current Hijacks"
 			});
 		',
+    */
 		"RelativePosLeft" => 45,
 		"RelativePosTop" => 40,
 		"content" => '
       <canvas id="countdown-canvas" width="150px" height="150px"></canvas>
-      <img id="pirate" src="images/icons/switch_icon_white.png" />
+      <img src="images/icons/switch_icon_white.png" />
+      <div id="timer-info"></div>
 		',
-		"id" => "timer-round1",
+		"id" => "timer-round",
 		"class" => "item timer",
 		"css" => '
-			#timer-round1 {
+			#timer-round {
         position: absolute;
         width: 150px;
         height: 150px;
         cursor: pointer;
+        opacity: 0.4;
+        -moz-transition:opacity 0.25s ease-out;
+        -webkit-transition:opacity 0.25s ease-out;
+        transition:opacity 0.25s ease-out;
       }
-      #countdown-canvas {
+      .countdown-canvas {
         position: absolute;
         z-index: 1;
         border: 0;
       }
-			#timer-round1 img {
+			#timer-round img {
         position:absolute;
         top:38px;
         left:32px;
@@ -36,13 +44,29 @@
         z-index:2;
         border: 0;
       }
-			#timer-round1:hover {
+			.no-touch #timer-round:hover {
+        opacity: 1;
+      }
+      #timer-info {
+        position:absolute;
+        background:white;
+        left:160px;
+        top:10%;
+        white-space:nowrap;
+        padding:5px;
+        padding-left:10px;
+        padding-right:10px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        font-weight:bold;
+        font-size:20px;
       }
 		',
 		"javascript" => '
 			(function (Popcorn) {  
 			  Popcorn.plugin( "timerRound" , function( options ) {
-				var fr = 0;
+				var frameCount = 0;
 				var totaltime, that;
         var SIZE = 150;
         var context = $("#countdown-canvas")[0].getContext("2d");
@@ -54,22 +78,21 @@
 				  start: function(event, options){
             that = this;
             totaltime = options.end - options.start;
+            $("#timer-info").html(options.infoText);
             $("#"+options.id).show();
 				  },
 				  end: function(event, options){
             $("#"+options.id).hide();
 				  },
 				  frame: function(){
-            fr++;
+            frameCount++;
             var numframes = (options.framerate) ? Math.round((100 / options.framerate) * 0.6) : 6;
-            if (fr >= numframes) {
+            if (frameCount >= numframes) {
               //frame action
               var currentTime = that.currentTime() - options.start;
               var p = (currentTime / totaltime);
               
-              console.log(p);
-              
-              // 
+              // Draw arc
               context.lineCap = "butt";
               context.lineWidth = 10;
               context.clearRect(0, 0, SIZE, SIZE);
@@ -79,7 +102,8 @@
               context.arc(SIZE/2, SIZE/2, SIZE/2 - 10, (Math.PI * 2 * (1 - Math.max(0.01, p))) - Math.PI * 0.5, -Math.PI * 0.5, true);
               context.stroke();
               
-              fr = 0;
+              // Reset framecount
+              frameCount = 0;
             }
 				  }
 				};

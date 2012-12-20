@@ -1,12 +1,12 @@
 <?php
 	$itemArray["ships"] = array(
 		"popcorn" => '
-			popcorn.timer({
-				start: 10,
+			popcorn.timerRound({
+				start: 5 ,
 				end:20,
 				framerate: 20,
-				countdown: "width",
-				id: "shipcountdown"
+				id: "timer-round",
+        infoText: "Current Hijacks"
 			});
 		',
 		"onresize" => 'scaleShips();',
@@ -36,7 +36,6 @@
 				<div class="ship ship9" id="ship9"><img src="images/ships/ships_tugboat.png" /></div>
 			</div>
 		',
-		"extrahtml" => '<div class="interactive" id="shipcountdown"><img id="pirate" src="images/icons/switch_icon_white.png" /><div class="countdown"></div><div class="infotext">Current Hijacks</div></div>',
 		"css" => '
 			.ship{position:absolute; left:-562px; width:562px; display:none; text-align:left}
 			.shiptext{text-align:right; font-weight:bold;}
@@ -70,13 +69,14 @@
 			.interactive{cursor:pointer; opacity:.5}
 			.interactive:hover{opacity:1}
 			#shipcountdown .countdown{position:absolute; width:100%; height:8px; bottom:1px}
-			.infotext{position:absolute; background:white; left:200px; top:50%; margin-top:-20px; white-space:nowrap; padding:5px; padding-left:10px; padding-right:10px; border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; font-weight:bold; font-size:20px}
 		',
 		"javascript" => '
 			$("document").ready(function(){
+        /*
 				$("#pirate").live("click", function(){
 					showShips(500);
 				});
+        */
 				$("#ships").live("click", function(){
 					$("#ships").fadeOut();
 					popcorn.play();
