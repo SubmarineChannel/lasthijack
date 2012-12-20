@@ -1,17 +1,12 @@
 <?php
 	$itemArray["ships"] = array(
 		"popcorn" => '
-			popcorn.code({
+			popcorn.timer({
 				start: 10,
 				end:20,
-				onStart: function(){
-					$("#pirate").show();
-				},
-				onEnd: function(){
-					$("#pirate").hide();
-				},
 				framerate: 20,
-				timeAfterAnimation: 4
+				countdown: "width",
+				id: "shipcountdown"
 			});
 		',
 		"onresize" => 'scaleShips();',
@@ -41,7 +36,7 @@
 				<div class="ship ship9" id="ship9"><img src="images/ships/ships_tugboat.png" /></div>
 			</div>
 		',
-		"extrahtml" => '<img id="pirate" src="images/icons/switch_icon.png" />',
+		"extrahtml" => '<div id="shipcountdown"><img id="pirate" src="images/icons/switch_icon_white.png" /><div class="countdown"></div></div>',
 		"css" => '
 			.ship{position:absolute; left:-562px; width:562px; display:none; text-align:left}
 			.shiptext{text-align:right; font-weight:bold;}
@@ -71,7 +66,8 @@
 				display:none;
 			}
 			#ships h1{margin:0}
-			#pirate{display:none; position:absolute; left:50%; top:50%; margin-left:-142px; margin-top:-125px; cursor:pointer;}
+			#shipcountdown{display:none; width:185px; height:171px; position:absolute; left:50%; top:50%; margin-left:-142px; margin-top:-125px; cursor:pointer;}
+			#shipcountdown .countdown{position:absolute; width:100%; height:3px; bottom:1px}
 		',
 		"javascript" => '
 			$("document").ready(function(){
@@ -98,7 +94,7 @@
 				$("#ships").css("margin-top", (shipHeight-((scale*shipHeight)))*-0.5);
 			}
 			function showShips(pership){
-				$("#pirate").hide();
+				$("#shipcountdown").hide();
 				popcorn.pause();
 				$("#ships").show(function(){
 					$("#ship1").show().animate({"left": "+=562px"}, pership, function(){

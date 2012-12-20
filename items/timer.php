@@ -5,7 +5,8 @@
 				start: 150,
 				end:160,
 				framerate: 20,
-				id: "timer1"
+				id: "timer1",
+				countdown: "height"
 			});
 		',
 		"RelativePosLeft" => 45,
@@ -29,7 +30,7 @@
 			}
 			#timer1:hover{background:#fcc;}
 			.countdown{position:absolute; left:0px; bottom:0px; height:100%; width:100%; overflow:hidden; background:#fff; border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; z-index:1}
-			#timer1:hover .countdown{background:#f00}
+			#timer1:hover .countdown{background:#ccc}
 		',
 		"javascript" => '
 			(function (Popcorn) {  
@@ -55,7 +56,7 @@
 					if(fr >= numframes){
 						//frame action
 						var currentTime = that.currentTime() - options.start;
-						$("#"+options.id).find(".countdown").css("height", 100-((currentTime/totaltime)*100)+"%");
+						$("#"+options.id).find(".countdown").css(options.countdown, 100-((currentTime/totaltime)*100)+"%");
 						fr = 0;
 					}
 				  }
