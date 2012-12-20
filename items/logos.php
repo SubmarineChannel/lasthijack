@@ -12,8 +12,8 @@
 				}
 			});
 		',
-		"content" => '<div class="logo"><img src="images/logos/channel.png"/></div>
-      <div class="logo"><img src="images/logos/ikon.png"/></div>
+		"content" => '<div class="logo"><a href="http://www.submarinechannel.com"><img src="images/logos/channel.png"/></a></div>
+      <div class="logo"><a href="http://www.ikonrtv.nl/"><img src="images/logos/ikon.png"/></a></div>
       <div class="logo"><img src="images/logos/npo.png"/></div>',
 		"class" => "logos",
 		"css" => '
