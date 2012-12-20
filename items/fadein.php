@@ -17,8 +17,8 @@
 			<center>
 			<table>
 			<tr>
-			<td><img src="images/icons/switch_icon_white.png" /><br />show background info</td>
-			<td><img src="images/icons/arrow-up-white.png" /><br />switch perspective</td>
+			<td><img src="images/icons/switch_icon_white.png" /><br />Interact</td>
+			<!--td><img src="images/icons/arrow-up-white.png" /><br />switch perspective</td-->
 			</tr>
 			</table>
 			</center>
