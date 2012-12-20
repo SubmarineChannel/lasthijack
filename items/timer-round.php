@@ -7,7 +7,8 @@
 				end: 15,
 				framerate: 20,
 				id: "timer-round1",
-        infoText: "Current Hijacks"
+        infoText: "Current Hijacks",
+        clickCallback: null
 			});
 		',
     */
@@ -64,7 +65,7 @@
       }
 		',
 		"javascript" => '
-			(function (Popcorn) {  
+			(function (Popcorn) {
 			  Popcorn.plugin( "timerRound" , function( options ) {
 				var frameCount = 0;
 				var totaltime, that;
@@ -80,9 +81,16 @@
             totaltime = options.end - options.start;
             $("#timer-info").html(options.infoText);
             $("#"+options.id).show();
+            if (options.clickCallback != null) {
+              $("#"+options.id).bind("click", function() {
+                $("#"+options.id).hide();
+                options.clickCallback();
+              });
+            }
 				  },
 				  end: function(event, options){
             $("#"+options.id).hide();
+            $("#"+options.id).bind("click");
 				  },
 				  frame: function(){
             frameCount++;

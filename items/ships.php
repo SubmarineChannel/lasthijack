@@ -6,7 +6,10 @@
 				end:20,
 				framerate: 20,
 				id: "timer-round",
-        infoText: "Current Hijacks"
+        infoText: "Current Hijacks",
+        clickCallback: function(){
+					showShips(500);
+				}
 			});
 		',
 		"onresize" => 'scaleShips();',
@@ -72,12 +75,7 @@
 		',
 		"javascript" => '
 			$("document").ready(function(){
-        /*
-				$("#pirate").live("click", function(){
-					showShips(500);
-				});
-        */
-				$("#ships").live("click", function(){
+        $("#ships").live("click", function(){
 					$("#ships").fadeOut();
 					popcorn.play();
 				});
