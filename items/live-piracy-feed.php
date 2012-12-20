@@ -2,10 +2,17 @@
 
 $itemArray["live-piracy-feed"] = array(
 	"popcorn" => '
-		popcorn.timeline({
+		popcorn.code({
 			start: 0.1,
 			end:1000,
-			framerate: 20
+			framerate: 20,
+      onStart: function(){
+        // Hacky globals
+        window.livePiracyReportItemListReadyForShow = true;
+				if (window.livePiracyReportItemList) {
+          window.livePiracyReportItemList.show();
+        }
+			},
 		});
 	',
 	"content" => '<div id="live-piracy-feed-toggle">X</div><div id="live-piracy-feed-header"><h1>Live Piracy Report</h1></div><div id="live-piracy-feed-content"></div>',
@@ -168,6 +175,8 @@ $itemArray["live-piracy-feed"] = array(
 		
 		// Initialize ourselves
 		this.initialize(data);
+    
+    // Add click event handler
 	}
 	
 	// Live report list
@@ -178,6 +187,8 @@ $itemArray["live-piracy-feed"] = array(
 		// List of items
 		this.items = [];
 		this.itemIndex = 0;
+    
+    this.initialized = false;
 		
 		// Reference to self
 		var _this = this;
@@ -200,10 +211,16 @@ $itemArray["live-piracy-feed"] = array(
 				_this.container.append(_this.items[i].element);
 			}
 			
-			_this.show();
+      _this.initialized = true;
+      if (window.livePiracyReportItemListReadyForShow) {
+        _this.show();
+      }
 		};
 		
 		this.show = function() {
+      if (!_this.initialized) {
+        return;
+      }
 			// Show
 			// Move list up
 			$("#live-piracy-feed").slideDown(350);
@@ -247,7 +264,8 @@ $itemArray["live-piracy-feed"] = array(
 		$("#live-piracy-feed-content").load("live-piracy-report.php table.fabrikList", function(response, status, xhr) {
 			if (status != "error") {
 				// Create the list of items
-				new LivePiracyReportItemList();
+        // Hacky globals
+				window.livePiracyReportItemList = new LivePiracyReportItemList();
 			}
 		});
 	});
