@@ -8,38 +8,111 @@ $itemArray["live-piracy-feed"] = array(
 			framerate: 20
 		});
 	',
-	"content" => '',
+	"content" => '<div id="live-piracy-feed-toggle">X</div><div id="live-piracy-feed-header"><h1>Live Piracy Report</h1></div><div id="live-piracy-feed-content"></div>',
 	"class" => 'live-piracy-feed',
 	"css" => '
+		#live-piracy-feed > div {
+			margin: 0;
+			border: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 		#live-piracy-feed {
+			margin: 0;
+			border: 0;
+			box-sizing: border-box;
+			
 			position: fixed;
 			bottom: 0;
-			width:32em;
-			height:9em;
+			width:14em;
+			height:24em;
 			right:0;
 			display: none;
-			overflow: hidden;
-		}
-		#live-piracy-feed-container {
-			position: relative;
+			
 			background:#ccc; 
 			opacity:.5;
-			border-bottom-width: 0px ;
-			padding: 1.25em 1.25em 6.25em 1.25em;
+			padding: 0;
+		}
+		#live-piracy-feed-toggle {
+			position: absolute;
+			margin: 0;
+			border: 0;
+			padding: 0;
+			box-sizing: border-box;
+			top: 0.5em;
+			right: 0.5em;
+			cursor: pointer;
+			cursor: hand;
+			font-size: 0.75em;
+		}
+		#live-piracy-feed-header {
+			margin-left: 1.25em;
+			margin-right: 1.25em;
+			margin-top: 0.5em;
+			margin-bottom: 0;
+			
+			position: relative;
+			width: 100%;
+			height: 1.75em;
+			border: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		#live-piracy-feed-header > h1 {
+			font-size: 1.25em;
+			margin: 0;
+			border: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		#live-piracy-feed-content {
+			position: relative;
+			overflow: hidden;
+			height: 22em;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			box-sizing: border-box;
+			
+			margin-left: 1.25em;
+			margin-right: 1.25em;
+		}
+		#live-piracy-feed-item-container {
+			position: relative;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			height: 22em;
+			box-sizing: border-box;
 		}
 		.live-piracy-feed-item {
-			height: 7.75em;
-			margin-bottom: 1.25em;
+			height: 22em;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			box-sizing: border-box;
 		}
 		.live-piracy-feed-item-date {
 			font-size: 0.6em;
 			font-style: italic;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			box-sizing: border-box;
 		}
 		.live-piracy-feed-item-location {
 			font-size: 0.6em;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			box-sizing: border-box;
 		}
 		.live-piracy-feed-item-content {
 			font-size: 0.75em;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			box-sizing: border-box;
 		}
 	',
 	"javascript" => '
@@ -97,12 +170,12 @@ $itemArray["live-piracy-feed"] = array(
 		var _this = this;
 		
 		this.initialize = function() {
-			var elements = $("#live-piracy-feed td.jos_fabrik_icc_ccs_piracymap2012___narrations");
+			var elements = $("#live-piracy-feed-content td.jos_fabrik_icc_ccs_piracymap2012___narrations");
 			
 			// Clear html & add container for items
-			$("#live-piracy-feed").html("");
-			$("#live-piracy-feed").append("<div id=\"live-piracy-feed-container\"></div>");
-			_this.container = $("#live-piracy-feed-container");
+			$("#live-piracy-feed-content").html("");
+			$("#live-piracy-feed-content").append("<div id=\"live-piracy-feed-item-container\"></div>");
+			_this.container = $("#live-piracy-feed-item-container");
 			
 			// Create the items
 			for (var i = elements.length - 1; i > -1; i--) {
@@ -119,7 +192,6 @@ $itemArray["live-piracy-feed"] = array(
 		
 		this.show = function() {
 			// Show
-			//$("#live-piracy-feed").css("display", "block");
 			// Move list up
 			$("#live-piracy-feed").slideDown(350);
 		};
@@ -129,7 +201,7 @@ $itemArray["live-piracy-feed"] = array(
 			setTimeout(function() {
 				// Move container number of pixels up of the current item
 				_this.container.animate({
-						top: "-=9em"
+						top: "-=22em"
 					},
 					350,
 					_this.moveNextComplete()
@@ -159,7 +231,7 @@ $itemArray["live-piracy-feed"] = array(
 	// Start load when document is ready
 	$("document").ready(function() {
 		// Load live piracy report data
-		$("#live-piracy-feed").load("live-piracy-report.php table.fabrikList", function(response, status, xhr) {
+		$("#live-piracy-feed-content").load("live-piracy-report.php table.fabrikList", function(response, status, xhr) {
 			if (status != "error") {
 				// Create the list of items
 				new LivePiracyReportItemList();
