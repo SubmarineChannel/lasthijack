@@ -3,9 +3,9 @@
 		"popcorn" => '
 			popcorn.code({
 				start: 1,
-				end:8,
+				end:12,
 				onStart: function( options ) {
-					var locationSpriteArray = new Array(2500, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 2000);
+					var locationSpriteArray = new Array(2500, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 2000);
 					var numsprites = locationSpriteArray.length;
 					showSprite("sprite", 0, locationSpriteArray, 400, false, numsprites);
 					$("#map").show();
@@ -15,11 +15,11 @@
 				}
 			});
 			popcorn.code({
-				start: 10,
-				end:25,
+				start: 30,
+				end:40,
 				onStart: function( options ) {
 					$("#targetchoice").show();
-					var locationSpriteArray = new Array(50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 2000);
+					var locationSpriteArray = new Array(100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 2000);
 					var numsprites = locationSpriteArray.length;
 					showSprite("targetchoice", 0, locationSpriteArray, 850, false, numsprites);					
 				},

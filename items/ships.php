@@ -36,7 +36,7 @@
 				<div class="ship ship9" id="ship9"><img src="images/ships/ships_tugboat.png" /></div>
 			</div>
 		',
-		"extrahtml" => '<div id="shipcountdown"><img id="pirate" src="images/icons/switch_icon_white.png" /><div class="countdown"></div></div>',
+		"extrahtml" => '<div class="interactive" id="shipcountdown"><img id="pirate" src="images/icons/switch_icon_white.png" /><div class="countdown"></div><div class="infotext">Current Hijacks</div></div>',
 		"css" => '
 			.ship{position:absolute; left:-562px; width:562px; display:none; text-align:left}
 			.shiptext{text-align:right; font-weight:bold;}
@@ -66,8 +66,11 @@
 				display:none;
 			}
 			#ships h1{margin:0}
-			#shipcountdown{display:none; width:185px; height:171px; position:absolute; left:50%; top:50%; margin-left:-142px; margin-top:-125px; cursor:pointer;}
-			#shipcountdown .countdown{position:absolute; width:100%; height:3px; bottom:1px}
+			#shipcountdown{display:none; width:185px; height:171px; position:absolute; left:50%; top:50%; margin-left:-142px; margin-top:-125px; }
+			.interactive{cursor:pointer; opacity:.5}
+			.interactive:hover{opacity:1}
+			#shipcountdown .countdown{position:absolute; width:100%; height:8px; bottom:1px}
+			.infotext{position:absolute; background:white; left:200px; top:50%; margin-top:-20px; white-space:nowrap; padding:5px; padding-left:10px; padding-right:10px; border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; font-weight:bold; font-size:20px}
 		',
 		"javascript" => '
 			$("document").ready(function(){
