@@ -15,7 +15,7 @@ $itemArray["live-piracy-feed"] = array(
 			},
 		});
 	',
-	"content" => '<div id="live-piracy-feed-toggle">X</div><div id="live-piracy-feed-header"><h1>Live Piracy Report</h1></div><div id="live-piracy-feed-content"></div>',
+	"content" => '<div id="live-piracy-feed-header"><h1>Live Piracy Report</h1></div><div id="live-piracy-feed-content"></div>',
 	"class" => 'live-piracy-feed',
 	"css" => '
 		#live-piracy-feed > div {
@@ -151,10 +151,11 @@ $itemArray["live-piracy-feed"] = array(
 				positionStartPos = data.indexOf("Posn:"),
 				breakPos = data.indexOf("<br>");
 			
+      var excerpt = data.substr(breakPos + 4, 170);
 			var date = data.substring(0, dateSeperatorPos),
 				position = data.substring(positionStartPos + 5, data.indexOf(",")),
 				location = data.substring(data.indexOf("Posn:", data.indexOf(",")), breakPos),
-        excerpt = data.substr(breakPos + 4, 137) + "...",
+        excerpt = excerpt.substr(0, excerpt.lastIndexOf(" ")) + "...",
 				content = data.substring(breakPos + 4);
 			
 			// Update location
