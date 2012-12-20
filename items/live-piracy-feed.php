@@ -3,7 +3,7 @@
 $itemArray["live-piracy-feed"] = array(
 	"popcorn" => '
 		popcorn.code({
-			start: 0.1,
+			start: 0.5,
 			end:1000,
 			framerate: 20,
       onStart: function(){
@@ -213,7 +213,7 @@ $itemArray["live-piracy-feed"] = array(
 			}
 			
       _this.initialized = true;
-      if (window.livePiracyReportItemListReadyForShow) {
+      if (window.livePiracyReportItemListReadyForShow === true) {
         _this.show();
       }
 		};
