@@ -13,7 +13,7 @@
 			});
 		',
 		"content" => '
-			<h1>Starting "Last Hijack"</h1>
+			<h1>The Last Hijack explores the current issue of modern day piracy and the lives of the people it touches from both the Western and the Somali perspective.</h1>
 			<center>
 			<table>
 			<tr>
@@ -25,7 +25,7 @@
 		',
 		"css" => '
 			#fadein{position:absolute; width:100%; height:100%; background:#000; text-align:center; color:white}
-			#fadein h1{margin-top:15%}
+			#fadein h1{margin-top:15%;}
 			#fadein table{width:400px}
 			#fadein img{height:60px}
 		',

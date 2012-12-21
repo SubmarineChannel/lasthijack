@@ -5,9 +5,10 @@
 				start: 1,
 				end:12,
 				onStart: function( options ) {
-					var locationSpriteArray = new Array(2500, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 2000);
+					var ms = 30;
+					var locationSpriteArray = new Array(2500, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms);
 					var numsprites = locationSpriteArray.length;
-					showSprite("sprite", 0, locationSpriteArray, 400, 400, false, numsprites, 2);
+					showSprite("sprite", 0, locationSpriteArray, 400, 400, false, numsprites, numsprites);
 					$("#map").show();
 				},
 				onEnd: function(){
@@ -19,9 +20,10 @@
 				end:40,
 				onStart: function( options ) {
 					$("#targetchoice").show();
-					var locationSpriteArray = new Array(100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 2000);
+					var ms = 100;
+					var locationSpriteArray = new Array(ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms);
 					var numsprites = locationSpriteArray.length;
-					showSprite("targetchoice", 0, locationSpriteArray, 850, 250, false, numsprites, 1);					
+					showSprite("targetchoice", 0, locationSpriteArray, 850, 256, false, numsprites, 1);					
 				},
 				onEnd: function(){
 					$("#targetchoice").fadeOut();
@@ -34,7 +36,7 @@
 		"css" => '
 			#map{position:absolute; width:400px; height:400px; bottom:8px; left:0px; display:none}
 			#sprite{position:absolute; width:400px; height:400px; background:url(../images/spriteSheets/location_sprite.png) 0px 0px no-repeat; overflow:hidden}
-			#targetchoice{position:absolute; width:850px; height:250px; left:10px; top:10px; background:url(../images/spriteSheets/targetofchoice_sprite.png) 0px 0px no-repeat; overflow:hidden; display:none}
+			#targetchoice{position:absolute; width:850px; height:250px; left:0px; top:0px; background:url(../images/spriteSheets/targetofchoice_sprite.png) 0px 0px no-repeat; overflow:hidden; display:none}
 		',
 		"javascript" => '
 			function showSprite(id, spriteNum, spriteArr, spriteWidth, spriteHeight, sprinteRepeat, numsprites, cols){
