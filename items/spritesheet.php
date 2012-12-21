@@ -44,7 +44,6 @@
 				var row = Math.floor(spriteNum/cols);
 				var marginleft = spriteWidth*col*-1;
 				var marginTop = spriteHeight*row*-1;
-				console.log(marginleft);
 				$("#"+id).css("background-position", marginleft+"px "+marginTop+"px");
 				setTimeout(function(){
 					spriteNum++;

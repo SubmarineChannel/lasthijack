@@ -81,6 +81,7 @@
           
           return {
             start: function(event, options){
+              console.log("timerRound.start");
               
               // Check if element can be found
               if ($("#" + options.elementID).length == 0) {
@@ -106,24 +107,24 @@
               // Set timer position
               $("#"+options.elementID).css("position", "absolute");
               $("#"+options.elementID).addClass("item");
-              if (options.relativePositionTop !== null) {
+              if (!isNaN(options.relativePositionTop)) {
                 $("#"+options.elementID).css("margin-top", ((options.relativePositionTop - 50) * ($("#video").height() / 100)).toString() + "px");
               } else {
                 $("#"+options.elementID).css("margin-top", 0);
               }
-              if (options.relativePositionLeft !== null) {
+              if (!isNaN(options.relativePositionLeft)) {
                 $("#"+options.elementID).css("margin-left", ((options.relativePositionLeft - 50) * ($("#video").width() / 100)).toString() + "px");
               } else {
                 $("#"+options.elementID).css("margin-left", 0);
               }
               
-              if (options.absolutePositionBottom !== null) {
+              if (!isNaN(options.absolutePositionBottom)) {
                 $("#"+options.elementID).removeClass("item");
                 $("#"+options.elementID).css("position", "fixed");
                 $("#"+options.elementID).css("bottom", options.absolutePositionBottom + "px");
               }
               
-              if (options.absolutePositionRight !== null) {
+              if (!isNaN(options.absolutePositionRight)) {
                 $("#"+options.elementID).removeClass("item");
                 $("#"+options.elementID).css("position", "fixed");
                 $("#"+options.elementID).css("right", options.absolutePositionRight + "px");
