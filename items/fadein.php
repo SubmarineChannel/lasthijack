@@ -12,9 +12,14 @@
 				}
 			});
 		',
+		"onresize" => 'scale("startscreen", 1000, 800, false, true); $("#startscreen").show(); ',
+		"onstart" => 'scale("startscreen", 1000, 800, false, true); $("#startscreen").show(); ',
 		"content" => '
 			<center>
-			<table>
+			<table id="startscreen">
+				<tr>
+					<td colspan="2" height="200"></td>
+				</tr>
 				<tr>
 					<td>
 						<div id="preloader">
@@ -42,7 +47,7 @@
 		',
 		"css" => '
 			#fadein{position:absolute; width:100%; height:100%; background:#000; text-align:center;}
-			#fadein table{margin-top:200px; width:1000px}
+			#fadein table{width:1000px}
 			.textfield{font-size:20px; font-weight:bold; background:#fff; padding:20px; margin-left:80px;-moz-border-radius: 16px;-webkit-border-radius: 16px;border-radius: 16px;}
 			#preloader{position:relative; background:#333; width:491px; height:400px; overflow:hidden;}
 			#preloader .progress{background:#fff; position:absolute; width:491px; bottom:0px; left:0px; height:0%; overflow:hidden}

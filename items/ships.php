@@ -15,8 +15,8 @@
 				}
 			});
 		',
-		"onresize" => 'scaleShips();',
-		"onstart" => 'scaleShips();',
+		"onresize" => 'scale("ships", 1000, 800, true, true);',
+		"onstart" => 'scale("ships", 1000, 800, true, true);',
 		"content" => '
 			<h1>Current Hijacks</h1>
 			<div style="height:841px; width:238px; left:0px; top:0px; position:absolute; margin-right:10px; margin-top:70px">
@@ -84,18 +84,16 @@
 				});
 			});
 			
-			function scaleShips(){
+			function scale(id, width, height, changemarginleft, changemargintop){
 				var containerHeight = $("#container").height();
-				var shipHeight = 1000;
-				var shipWidth = 800
-				var scale = containerHeight/shipHeight;	
-				$("#ships").css("-webkit-transform", "scale("+scale+")");
-				$("#ships").css("-moz-transform", "scale("+scale+")");
-				$("#ships").css("-ms-transform", "scale("+scale+")");
-				$("#ships").css("-o-transform", "scale("+scale+")");
-				$("#ships").css("transform", "scale("+scale+")");
-				$("#ships").css("margin-left", (shipWidth-((scale*shipWidth)))*-0.5);
-				$("#ships").css("margin-top", (shipHeight-((scale*shipHeight)))*-0.5);
+				var scale = containerHeight/height;	
+				$("#"+id).css("-webkit-transform", "scale("+scale+")");
+				$("#"+id).css("-moz-transform", "scale("+scale+")");
+				$("#"+id).css("-ms-transform", "scale("+scale+")");
+				$("#"+id).css("-o-transform", "scale("+scale+")");
+				$("#"+id).css("transform", "scale("+scale+")");
+				if(changemarginleft)$("#"+id).css("margin-left", (width-((scale*width)))*-0.5);
+				if(changemargintop)$("#"+id).css("margin-top", (height-((scale*height)))*-0.5);
 			}
 			function showShips(pership){
 				$("#shipcountdown").hide();
