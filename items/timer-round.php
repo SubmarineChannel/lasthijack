@@ -1,6 +1,7 @@
 <?php
 	$itemArray["timer-round"] = array(
     /*
+    Example properties
 		"popcorn" => '
 			popcorn.timerRound({
 				start: 5,
@@ -8,12 +9,12 @@
 				framerate: 20,
 				id: "timer-round1",
         infoText: "Current Hijacks",
-        clickCallback: null
+        clickCallback: null,
+        relativePositionTop: null,
+        relativePositionLeft: null
 			});
 		',
     */
-		"RelativePosLeft" => 45,
-		"RelativePosTop" => 40,
 		"content" => '
       <canvas id="countdown-canvas" width="150px" height="150px"></canvas>
       <img src="images/icons/switch_icon_white.png" />
@@ -80,6 +81,20 @@
             that = this;
             totaltime = options.end - options.start;
             $("#timer-info").html(options.infoText);
+            
+            // Set timer position
+            if (options.relativePositionTop !== null) {
+              $("#"+options.id).css("margin-top", ((options.relativePositionTop - 50) * ($("#video").height() / 100)).toString() + "px");
+            } else {
+              $("#"+options.id).css("margin-top", 0);
+            }
+            if (options.relativePositionLeft !== null) {
+              $("#"+options.id).css("margin-left", ((options.relativePositionLeft - 50) * ($("#video").width() / 100)).toString() + "px");
+            } else {
+              $("#"+options.id).css("margin-left", 0);
+            }
+            
+            
             $("#"+options.id).show();
             if (options.clickCallback != null) {
               $("#"+options.id).bind("click", function() {

@@ -11,6 +11,8 @@
 	<title>The Last Hijack</title>
   <script src="js/modernizr.js" type="text/javascript"></script>
 	<script src="js/popcorn-complete.js" type="text/javascript"></script>
+  <script type="text/javascript" src="//use.typekit.net/qgr6piw.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<link rel="stylesheet" href="css/demos.css" type="text/css" media="screen" />
 	<script src="js/jquery.min.js" ></script>
 	<script type="text/javascript" src="js/script.js.php"></script>

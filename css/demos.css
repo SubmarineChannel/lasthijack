@@ -1,6 +1,8 @@
 body {
     font-family: Arial;
 }
+html, body, h1, h2, p, div { font-family: "proxima-nova", Arial; }
+* { border: 0; margin: 0; padding: 0; }
 
 pre.code {
     display: block;
