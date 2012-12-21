@@ -8,13 +8,20 @@
 				framerate: 20,
 				elementID: "timer-round",
         infoText: "Piracy &amp; Somalia",
-        relativePositionTop: 20,
-        relativePositionLeft: 20,
+        relativePositionTop: 31,
+        relativePositionLeft: 30,
         displayProgress: true,
         onClick: function(){
 					showMap();
 				}
 			});
+      popcorn.code({
+        start: 60,
+        end: 72,
+        onEnd: function() {
+          $("#map").fadeOut();
+        }
+      });
       
       // Timer for Target of Choice
       popcorn.timerRound({
@@ -23,13 +30,20 @@
 				framerate: 20,
 				elementID: "timer-round",
         infoText: "Target of Choice",
-        relativePositionTop: 20,
-        relativePositionLeft: 20,
+        relativePositionTop: 41,
+        relativePositionLeft: 15,
         displayProgress: true,
         onClick: function(){
 					showTargetOfChoice();
 				}
 			});
+      popcorn.code({
+        start: 90,
+        end: 98,
+        onEnd: function() {
+          $("#targetchoice").fadeOut();
+        }
+      });
 		',
 		"id" => "map",
 		"content" => '<div id="sprite"></div>',
@@ -43,17 +57,17 @@
       $("document").ready(function(){
         $("#map").live("click", function(){
 					$("#map").fadeOut();
-					popcorn.play();
+					//popcorn.play();
 				});
         
         $("#targetchoice").live("click", function(){
 					$("#targetchoice").fadeOut();
-					popcorn.play();
+					//popcorn.play();
 				});
 			});
       
       function showMap() {
-        popcorn.pause();
+        //popcorn.pause();
         
         var ms = 30;
         var locationSpriteArray = new Array(2500, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms);
@@ -63,7 +77,7 @@
       };
       
       function showTargetOfChoice() {
-        popcorn.pause();
+        //popcorn.pause();
       
         $("#targetchoice").show();
         var ms = 60;

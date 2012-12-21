@@ -30,7 +30,7 @@
         width: 150px;
         height: 150px;
         cursor: pointer;
-        opacity: 0.3;
+        opacity: 0.5;
         -moz-transition:opacity 0.25s ease-out;
         -webkit-transition:opacity 0.25s ease-out;
         transition:opacity 0.25s ease-out;

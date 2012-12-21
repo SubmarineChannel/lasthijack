@@ -1,21 +1,26 @@
 <?php
 	$itemArray["ships"] = array(
 		"popcorn" => '
-      /*
 			popcorn.timerRound({
-				start: 10,
-				end: 20,
+				start: 30,
+				end: 40,
 				framerate: 20,
 				elementID: "timer-round",
         infoText: "Current Hijacks",
-        relativePositionTop: 20,
-        relativePositionLeft: 20,
+        relativePositionTop: 45,
+        relativePositionLeft: 15,
         displayProgress: true,
         onClick: function(){
 					showShips(500);
 				}
 			});
-      */
+      popcorn.code({
+        start: 30,
+        end: 50,
+        onEnd: function() {
+          $("#ships").fadeOut();
+        }
+      });
 		',
 		"onresize" => 'scaleShips();',
 		"onstart" => 'scaleShips();',
@@ -101,7 +106,7 @@
 			}
 			function showShips(pership){
 				$("#shipcountdown").hide();
-				popcorn.pause();
+				//popcorn.pause();
 				$("#ships").show(function(){
 					$("#ship1").show().animate({"left": "+=562px"}, pership, function(){
 						$("#ship2").show().animate({"left": "+=562px"}, pership, function(){
