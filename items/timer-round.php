@@ -1,21 +1,22 @@
 <?php
 	$itemArray["timer-round"] = array(
-    /*
-    Example properties
-		"popcorn" => '
-			popcorn.timerRound({
-				start: 5,
-				end: 15,
-				framerate: 20,
-				elementID: "timer-round",
-        infoText: "Current Hijacks",
-        clickCallback: null,
-        displayProgress: true,
-        blink: false,
-        verticalTextRelativeTop: 10
-			});
-		',
-    */
+    "popcorn" => '
+      popcorn.timerRound({
+        start: 150,
+        end: 179.3,
+        framerate: 20,
+        elementID: "timer-round",
+        displayProgress: false,
+        relativePositionTop: 40,
+        relativePositionLeft: 45,
+        onClick: function(elementID) {
+          // Move popcorn playback
+          popcorn.currentTime(179.3);
+        },
+        blink: true,
+        useSwitch: true
+      });
+    ',
 		"content" => '
       <canvas class="countdown-canvas" width="150px" height="150px"></canvas>
       <img src="images/icons/switch_icon_white.png" />
@@ -29,7 +30,7 @@
         width: 150px;
         height: 150px;
         cursor: pointer;
-        opacity: 0.4;
+        opacity: 0.5;
         -moz-transition:opacity 0.25s ease-out;
         -webkit-transition:opacity 0.25s ease-out;
         transition:opacity 0.25s ease-out;
@@ -50,10 +51,10 @@
         z-index: 2;
         border: 0;
       }
-      .timer-round.timer-blink {
+      .timer-round.timer-blinking {
         opacity: 1;
       }
-			.no-touch .timer-round:hover {
+			.no-touch div:not(.timer-blink) .timer-round:hover {
         opacity: 1;
       }
       .timer-info {
@@ -172,13 +173,14 @@
                   
                   // Set class to that of blink
                   $("#" + options.elementID).addClass("timer-blink");
+                  $("#" + options.elementID).addClass("timer-blinking");
                   
                   // Register event listener for
                   $("#" + options.elementID).bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-                    if ($("#" + options.elementID).hasClass("timer-blink")) {
-                      $("#" + options.elementID).removeClass("timer-blink");
+                    if ($("#" + options.elementID).hasClass("timer-blinking")) {
+                      $("#" + options.elementID).removeClass("timer-blinking");
                     } else {
-                      $("#" + options.elementID).addClass("timer-blink");
+                      $("#" + options.elementID).addClass("timer-blinking");
                     }
                   });
                 }
@@ -190,6 +192,7 @@
               $("#"+options.elementID).unbind("click");
               $("#" + options.elementID).unbind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd");
               $("#" + options.elementID).removeClass("timer-blink");
+              $("#" + options.elementID).removeClass("timer-blinking");
               
               if (options.onEnd) {
                 options.onEnd();

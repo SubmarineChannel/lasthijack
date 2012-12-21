@@ -3,13 +3,13 @@
 $itemArray["live-piracy-feed"] = array(
 	"popcorn" => '
     popcorn.timerRound({
-      start: 5,
+      start: 15,
       end: 150,
       framerate: 20,
       elementID: "timer-persistant",
       infoText: "Live Piracy Report",
-      absolutePositionBottom: 0,
-      absolutePositionRight: 200,
+      absolutePositionBottom: 70,
+      absolutePositionRight: 270,
       displayProgress: false,
       verticalTextRelativeTop: 50,
       verticalTextRelativeLeft: 130,
