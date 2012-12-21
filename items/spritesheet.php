@@ -8,7 +8,7 @@
 					var ms = 30;
 					var locationSpriteArray = new Array(2500, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms);
 					var numsprites = locationSpriteArray.length;
-					showSprite("sprite", 0, locationSpriteArray, 400, 400, false, numsprites, numsprites);
+					showSprite("sprite", 0, locationSpriteArray, 400, 400, false, numsprites, 2);
 					$("#map").show();
 				},
 				onEnd: function(){
