@@ -51,7 +51,7 @@
 		',
 		"javascript" => '
 			function showSplash(){
-				var time = 7000;
+				var time = 10000;
 				popcorn.pause();
 				$("#preloader").find(".progress").animate({height:"100%"},time, function(){
 					popcorn.play();

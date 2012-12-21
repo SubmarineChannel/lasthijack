@@ -14,7 +14,7 @@
 		',
 		"content" => "",
 		"css" => '
-			#playpause{display:none; position:absolute; left:10px; width:50px; height:50px; bottom:0px; background:url(../images/icons/playpause.png); z-index:1000}
+			#playpause{display:none; position:absolute; left:10px; width:50px; height:50px; bottom:0px; background:url(../images/icons/playpause.png); z-index:1000; cursor:pointer}
 		',
 		"javascript" => '
 			var playing = true;

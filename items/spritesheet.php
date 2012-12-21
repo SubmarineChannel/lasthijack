@@ -17,11 +17,11 @@
 			});
 			popcorn.code({
 				start: 30,
-				end:40,
+				end:43,
 				onStart: function( options ) {
 					$("#targetchoice").show();
 					var ms = 60;
-					var locationSpriteArray = new Array(ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, 2000, ms, ms, ms, ms, ms, ms, ms, ms);
+					var locationSpriteArray = new Array(ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, 3000, ms+20, ms+20, ms+20, ms+20, ms+20, ms+20, ms+20, ms+20);
 					var numsprites = locationSpriteArray.length;
 					showSprite("targetchoice", 0, locationSpriteArray, 850, 256, false, numsprites, 1);					
 				},
