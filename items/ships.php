@@ -1,6 +1,7 @@
 <?php
 	$itemArray["ships"] = array(
 		"popcorn" => '
+      /*
 			popcorn.timerRound({
 				start: 10,
 				end: 20,
@@ -14,6 +15,7 @@
 					showShips(500);
 				}
 			});
+      */
 		',
 		"onresize" => 'scaleShips();',
 		"onstart" => 'scaleShips();',
