@@ -2,17 +2,32 @@
 
 $itemArray["live-piracy-feed"] = array(
 	"popcorn" => '
+    popcorn.timerRound({
+      start: 5,
+      end: 150,
+      framerate: 20,
+      elementID: "timer-persistant",
+      infoText: "Live Piracy Report",
+      absolutePositionBottom: 0,
+      absolutePositionRight: 200,
+      displayProgress: false,
+      verticalTextRelativeTop: 50,
+      verticalTextRelativeLeft: 130,
+      onClick: function(elementID) {
+        window.livePiracyReportItemList.show(elementID);
+      },
+      onEnd: function() {
+        window.livePiracyReportItemList.hide();
+      }
+    });
 		popcorn.code({
 			start: 0.5,
-			end:1000,
+			end: 1,
 			framerate: 20,
       onStart: function(){
         // Hacky globals
         window.livePiracyReportItemListReadyForShow = true;
-				if (window.livePiracyReportItemList) {
-          window.livePiracyReportItemList.show();
-        }
-			},
+			}
 		});
 	',
 	"content" => '<div id="live-piracy-feed-header"><h1>Live Piracy Report</h1></div><div id="live-piracy-feed-content"></div>',
@@ -204,19 +219,28 @@ $itemArray["live-piracy-feed"] = array(
 			}
 			
       _this.initialized = true;
-      if (window.livePiracyReportItemListReadyForShow === true) {
-        _this.show();
-      }
 		};
 		
-		this.show = function() {
+		this.show = function(elementID) {
       if (!_this.initialized) {
         return;
       }
 			// Show
 			// Move list up
 			$("#live-piracy-feed").slideDown(350);
+      
+      // Register an event handler
+      $("#live-piracy-feed").bind("click", function() {
+        // Hide
+        $("#live-piracy-feed").slideUp(350, function() {
+          $("#" + elementID).show();
+        });
+      });
 		};
+    
+    this.hide = function() {
+      $("#live-piracy-feed").slideUp(350);
+    };
 		
 		this.moveNext = function() {
 			// Wait for n seconds

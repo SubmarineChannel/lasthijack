@@ -7,23 +7,24 @@
 				start: 5,
 				end: 15,
 				framerate: 20,
-				id: "timer-round1",
+				elementID: "timer-round",
         infoText: "Current Hijacks",
         clickCallback: null,
-        relativePositionTop: null,
-        relativePositionLeft: null
+        displayProgress: true,
+        blink: false,
+        verticalTextRelativeTop: 10
 			});
 		',
     */
 		"content" => '
-      <canvas id="countdown-canvas" width="150px" height="150px"></canvas>
+      <canvas class="countdown-canvas" width="150px" height="150px"></canvas>
       <img src="images/icons/switch_icon_white.png" />
-      <div id="timer-info"></div>
+      <div class="timer-info"></div>
 		',
 		"id" => "timer-round",
-		"class" => "item timer",
+		"class" => "item timer timer-round",
 		"css" => '
-			#timer-round {
+			.timer-round {
         position: absolute;
         width: 150px;
         height: 150px;
@@ -33,23 +34,29 @@
         -webkit-transition:opacity 0.25s ease-out;
         transition:opacity 0.25s ease-out;
       }
-      .countdown-canvas {
-        position: absolute;
-        z-index: 1;
-        border: 0;
-      }
-			#timer-round img {
+			.timer-round img {
         position:absolute;
         top:38px;
         left:32px;
         height: 70px;
-        z-index:2;
+        z-index: 3;
         border: 0;
       }
-			.no-touch #timer-round:hover {
+      .timer-round img.timer-switch {
+        position:absolute;
+        top:0;
+        left:0;
+        height: 150px;
+        z-index: 2;
+        border: 0;
+      }
+      .timer-round.timer-blink {
         opacity: 1;
       }
-      #timer-info {
+			.no-touch .timer-round:hover {
+        opacity: 1;
+      }
+      .timer-info {
         position:absolute;
         background:white;
         left:160px;
@@ -68,75 +75,154 @@
 		"javascript" => '
 			(function (Popcorn) {
 			  Popcorn.plugin( "timerRound" , function( options ) {
-				var frameCount = 0;
-				var totaltime, that;
-        var SIZE = 150;
-        var context = $("#countdown-canvas")[0].getContext("2d");
-				
-				return {
-				  _setup : function( options ){
-					
-				  },
-				  start: function(event, options){
-            that = this;
-            totaltime = options.end - options.start;
-            $("#timer-info").html(options.infoText);
-            
-            // Set timer position
-            if (options.relativePositionTop !== null) {
-              $("#"+options.id).css("margin-top", ((options.relativePositionTop - 50) * ($("#video").height() / 100)).toString() + "px");
-            } else {
-              $("#"+options.id).css("margin-top", 0);
-            }
-            if (options.relativePositionLeft !== null) {
-              $("#"+options.id).css("margin-left", ((options.relativePositionLeft - 50) * ($("#video").width() / 100)).toString() + "px");
-            } else {
-              $("#"+options.id).css("margin-left", 0);
-            }
-            
-            
-            $("#"+options.id).show();
-            if (options.clickCallback != null) {
-              $("#"+options.id).bind("click", function() {
-                $("#"+options.id).hide();
-                options.clickCallback();
-              });
-            }
-				  },
-				  end: function(event, options){
-            $("#"+options.id).hide();
-            $("#"+options.id).bind("click");
-				  },
-				  frame: function(){
-            frameCount++;
-            var numframes = (options.framerate) ? Math.round((100 / options.framerate) * 0.6) : 6;
-            if (frameCount >= numframes) {
-              //frame action
-              var currentTime = that.currentTime() - options.start;
-              var p = (currentTime / totaltime);
+          var frameCount = 0;
+          var totaltime, that;
+          var SIZE = 150;
+          
+          return {
+            start: function(event, options){
               
-              // Draw arc
-              context.lineCap = "butt";
-              context.lineWidth = 10;
-              context.clearRect(0, 0, SIZE, SIZE);
-              context.beginPath();
-              context.strokeStyle = "rgba(255, 255, 255, 0.7)";
-              context.fillStyle = "rgba(255, 255, 255, 0.7)";
-              context.arc(SIZE/2, SIZE/2, SIZE/2 - 10, (Math.PI * 2 * (1 - Math.max(0.01, p))) - Math.PI * 0.5, -Math.PI * 0.5, true);
-              context.stroke();
+              // Check if element can be found
+              if ($("#" + options.elementID).length == 0) {
+                // Create timer element
+                var element = $("<div id=" + options.elementID + " class=\"item timer timer-round\"><div><canvas class=\"countdown-canvas\" width=\"150px\" height=\"150px\"></canvas>" +
+      "<img src=\"images/icons/switch_icon_white.png\" />" +
+      "<div class=\"timer-info\"></div></div></div>");
+                // Append element to div#container
+                $("div#container").append(element);
+              }
               
-              // Reset framecount
+              that = this;
               frameCount = 0;
+              totaltime = options.end - options.start;
+              
+              if (options.infoText !== undefined) {
+                $("#" + options.elementID + " .timer-info").html(options.infoText);
+                $("#" + options.elementID + " .timer-info").css("display", "block");
+              } else {
+                $("#" + options.elementID + " .timer-info").css("display", "none");
+              }
+              
+              // Set timer position
+              $("#"+options.elementID).css("position", "absolute");
+              $("#"+options.elementID).addClass("item");
+              if (options.relativePositionTop !== null) {
+                $("#"+options.elementID).css("margin-top", ((options.relativePositionTop - 50) * ($("#video").height() / 100)).toString() + "px");
+              } else {
+                $("#"+options.elementID).css("margin-top", 0);
+              }
+              if (options.relativePositionLeft !== null) {
+                $("#"+options.elementID).css("margin-left", ((options.relativePositionLeft - 50) * ($("#video").width() / 100)).toString() + "px");
+              } else {
+                $("#"+options.elementID).css("margin-left", 0);
+              }
+              
+              if (options.absolutePositionBottom !== null) {
+                $("#"+options.elementID).removeClass("item");
+                $("#"+options.elementID).css("position", "fixed");
+                $("#"+options.elementID).css("bottom", options.absolutePositionBottom + "px");
+              }
+              
+              if (options.absolutePositionRight !== null) {
+                $("#"+options.elementID).removeClass("item");
+                $("#"+options.elementID).css("position", "fixed");
+                $("#"+options.elementID).css("right", options.absolutePositionRight + "px");
+              }
+              
+              if (options.useSwitch === true) {
+                if ($("#" + options.elementID + " img.timer-switch").length == 0) {
+                  // Add the switch image
+                  $("#" + options.elementID).append("<img src=\"images/icons/switch_icon.png\" class=\"timer-switch\"/>");
+                }
+              } else {
+                if ($("#" + options.elementID + " img.timer-switch").length != 0) {
+                  // Remove the switch image
+                  $("#" + options.elementID + " img.timer-switch").remove();
+                }
+              }
+              
+              // Set text position
+              if (!isNaN(options.verticalTextRelativeTop)) {
+                $("#" + options.elementID + " .timer-info").css("top", options.verticalTextRelativeTop + "%");
+              } else {
+                  $("#" + options.elementID + " .timer-info").css("top", "10%");
+              }
+              
+              if (!isNaN(options.verticalTextRelativeLeft)) {
+                $("#" + options.elementID + " .timer-info").css("left", options.verticalTextRelativeLeft + "px");
+              } else {
+                  $("#" + options.elementID + " .timer-info").css("left", "160px");
+              }
+              
+              $("#"+options.elementID).show();
+              if (options.onClick) {
+                $("#"+options.elementID).bind("click", function() {
+                  $("#"+options.elementID).hide();
+                  options.onClick(options.elementID);
+                });
+              }
+              
+              setTimeout(function() {
+                if (options.blink === true) {
+                  // Update transition duration
+                  $("#" + options.elementID).css("-moz-transition", "opacity 0.5s ease-out");
+                  $("#" + options.elementID).css("-webkit-transition", "opacity 0.5s ease-out");
+                  $("#" + options.elementID).css("transition", "opacity 0.5s ease-out");
+                  
+                  // Set class to that of blink
+                  $("#" + options.elementID).addClass("timer-blink");
+                  
+                  // Register event listener for
+                  $("#" + options.elementID).bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+                    if ($("#" + options.elementID).hasClass("timer-blink")) {
+                      $("#" + options.elementID).removeClass("timer-blink");
+                    } else {
+                      $("#" + options.elementID).addClass("timer-blink");
+                    }
+                  });
+                }
+               }, 100);
+            },
+            
+            end: function(event, options){
+              $("#"+options.elementID).hide();
+              $("#"+options.elementID).unbind("click");
+              $("#" + options.elementID).unbind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd");
+              $("#" + options.elementID).removeClass("timer-blink");
+              
+              if (options.onEnd) {
+                options.onEnd();
+              }
+            },
+            
+            frame: function(event, options){
+              frameCount++;
+              var numframes = (options.framerate) ? Math.round((100 / options.framerate) * 0.6) : 6;
+              if (frameCount >= numframes) {
+                //frame action
+                var currentTime = that.currentTime() - options.start;
+                var p = (currentTime / totaltime);
+                
+                if (options.displayProgress === true) {
+                  // Draw arc
+                  var context = $("#" + options.elementID + " canvas.countdown-canvas")[0].getContext("2d");
+                  context.lineCap = "butt";
+                  context.lineWidth = 10;
+                  context.clearRect(0, 0, SIZE, SIZE);
+                  context.beginPath();
+                  context.strokeStyle = "rgba(255, 255, 255, 0.7)";
+                  context.fillStyle = "rgba(255, 255, 255, 0.7)";
+                  context.arc(SIZE/2, SIZE/2, SIZE/2 - 10, (Math.PI * 2 * (1 - Math.max(0.01, p))) - Math.PI * 0.5, -Math.PI * 0.5, true);
+                  context.stroke();
+                }
+                
+                // Reset framecount
+                frameCount = 0;
+              }
             }
-				  }
-				};
+          };
 			  });
 			})(Popcorn);
-			$("document").ready(function(){
-				$("#timer1").live("click", function(){
-					popcorn.currentTime(179.3);
-				});
-			});
 		'
 	);
 ?>

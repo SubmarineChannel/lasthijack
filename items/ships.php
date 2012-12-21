@@ -2,14 +2,15 @@
 	$itemArray["ships"] = array(
 		"popcorn" => '
 			popcorn.timerRound({
-				start: 5,
+				start: 10,
 				end: 20,
 				framerate: 20,
-				id: "timer-round",
+				elementID: "timer-round",
         infoText: "Current Hijacks",
         relativePositionTop: 20,
         relativePositionLeft: 20,
-        clickCallback: function(){
+        displayProgress: true,
+        onClick: function(){
 					showShips(500);
 				}
 			});
