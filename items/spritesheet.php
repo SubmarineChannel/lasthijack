@@ -17,7 +17,7 @@
 			});
       popcorn.code({
         start: 60,
-        end: 72,
+        end: 85,
         onEnd: function() {
           $("#map").fadeOut();
         }
@@ -39,7 +39,7 @@
 			});
       popcorn.code({
         start: 90,
-        end: 98,
+        end: 115,
         onEnd: function() {
           $("#targetchoice").fadeOut();
         }
