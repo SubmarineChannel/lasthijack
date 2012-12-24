@@ -34,7 +34,7 @@
 				<tr>
 					<td></td>
 					<td>
-						<div id="logos">
+						<div class="logos">
 							<img src="images/logos/sub_logo.png" />
 							<img src="images/logos/ikon_logo.png" />
 							<img src="images/logos/npo_logo.png" />
@@ -52,7 +52,7 @@
 			#preloader{position:relative; background:#333; width:491px; height:400px; overflow:hidden;}
 			#preloader .progress{background:#fff; position:absolute; width:491px; bottom:0px; left:0px; height:0%; overflow:hidden}
 			#preloader img{height:400px; position:absolute; left:0px; top:0px; }
-			#logos img{margin-top:100px;height:40px;margin-right:45px;}
+			.logos img{margin-top:100px;height:40px;margin-right:45px;}
 		',
 		"javascript" => '
 			function showSplash(){
@@ -60,6 +60,7 @@
 				popcorn.pause();
 				$("#preloader").find(".progress").animate({height:"100%"},time, function(){
 					popcorn.play();
+					//popcorn.currentTime(350);
 				});
 			}
 		'

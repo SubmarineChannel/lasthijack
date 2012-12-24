@@ -49,9 +49,9 @@
 		"content" => '<div id="sprite"></div>',
 		"extrahtml" => '<div id="targetchoice"></div>',
 		"css" => '
-			#map{position:absolute; width:400px; height:400px; bottom:8px; left:0px; display:none}
-			#sprite{position:absolute; width:400px; height:400px; background:url(../images/spriteSheets/location_sprite.png) 0px 0px no-repeat; overflow:hidden}
-			#targetchoice{position:absolute; width:850px; height:250px; left:-1px; top:-1px; background:url(../images/spriteSheets/targetofchoice_sprite.png) 0px 0px no-repeat; overflow:hidden; display:none}
+			#map{position:absolute; width:400px; height:400px; bottom:8px; left:0px; display:none; z-index:10}
+			#sprite{position:absolute; width:400px; height:400px; background:url(../images/spriteSheets/location_sprite.png) 0px 0px no-repeat; overflow:hidden; z-index:10}
+			#targetchoice{position:absolute; width:669px; height:200px; left:-1px; top:-1px; background:url(../images/spriteSheets/targetofchoice_sprite2.png) 0px 0px no-repeat; overflow:hidden; display:none; z-index:10}
 		',
 		"javascript" => '
       $("document").ready(function(){
@@ -83,10 +83,10 @@
         var ms = 60;
         var locationSpriteArray = new Array(ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, ms, 3000, ms+20, ms+20, ms+20, ms+20, ms+20, ms+20, ms+20, ms+20);
         var numsprites = locationSpriteArray.length;
-        showSprite("targetchoice", 0, locationSpriteArray, 850, 256, false, numsprites, 1);	
+        showSprite("targetchoice", 0, locationSpriteArray, 669, 200, false, numsprites, 1);	
       };
       
-			function showSprite(id, spriteNum, spriteArr, spriteWidth, spriteHeight, sprinteRepeat, numsprites, cols){
+			function showSprite(id, spriteNum, spriteArr, spriteWidth, spriteHeight, spriteRepeat, numsprites, cols){
 				var col = spriteNum%cols;
 				var row = Math.floor(spriteNum/cols);
 				var marginleft = spriteWidth*col*-1;
@@ -95,11 +95,11 @@
 				setTimeout(function(){
 					spriteNum++;
 					if(spriteNum < numsprites){
-						showSprite(id, spriteNum, spriteArr, spriteWidth, spriteHeight, sprinteRepeat, numsprites, cols);
+						showSprite(id, spriteNum, spriteArr, spriteWidth, spriteHeight, spriteRepeat, numsprites, cols);
 					} else {
-						if(sprinteRepeat){
+						if(spriteRepeat){
 							spriteNum = 0;
-							showSprite(id, spriteNum, spriteArr, spriteWidth, spriteHeight, sprinteRepeat, numsprites, cols);
+							showSprite(id, spriteNum, spriteArr, spriteWidth, spriteHeight, spriteRepeat, numsprites, cols);
 						} else {
 							spriteNum = 0;
 						}
