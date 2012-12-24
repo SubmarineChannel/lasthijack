@@ -20,7 +20,7 @@
 </head>
 <body>
 <div id="container">
-<video id="video" autoplay="autoplay" poster="images/poster.jpg">
+<video id="video" autoplay="autoplay">
 	<source src="video/LastHijack.mp4" type="video/mp4" />
 </video>
 <?php

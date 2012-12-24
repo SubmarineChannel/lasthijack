@@ -39,6 +39,10 @@ Popcorn( function(){
 	});
 });
 
+$("document").ready(function(){
+	setVideoPosition();
+});
+
 <?php 
 foreach($itemArray as $key => $var){
 	if(isset($var['javascript']))echo $var['javascript'];
