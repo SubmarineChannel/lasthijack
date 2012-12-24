@@ -22,8 +22,8 @@
         }
       });
 		',
-		"onresize" => 'scale("ships", 1000, 800, true, true);',
-		"onstart" => 'scale("ships", 1000, 800, true, true);',
+		"onresize" => 'scale("ships", 800, 1000, true, true);',
+		"onstart" => 'scale("ships", 800, 1000, true, true);',
 		"content" => '
 			<h1>Current Hijacks</h1>
 			<div style="height:841px; width:238px; left:0px; top:0px; position:absolute; margin-right:10px; margin-top:70px">
