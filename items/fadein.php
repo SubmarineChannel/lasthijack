@@ -83,7 +83,6 @@
 				popcorn.pause();
 				$("#preloader").find(".progress").animate({height:"100%"},time, function(){
 					popcorn.play();
-					//popcorn.currentTime(350);
 				});
 			}
 		'
