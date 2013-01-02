@@ -31,7 +31,7 @@
 					<td>
 						<div id="preloader">
 							<div class="progress"></div>
-							<img src="images/icons/skull_loading.png" />
+							<img src="images/icons/skull_loading.gif" />
 						</div>
 					</td>
 					<td>
@@ -60,9 +60,9 @@
 			#fadein table{width:1000px}
 			#startscreen{display:none}
 			.textfield{font-size:20px; font-weight:bold; background:#fff; padding:20px; margin-left:80px;-moz-border-radius: 16px;-webkit-border-radius: 16px;border-radius: 16px;}
-			#preloader{position:relative; background:#333; width:491px; height:400px; overflow:hidden;}
-			#preloader .progress{background:#fff; position:absolute; width:491px; bottom:0px; left:0px; height:0%; overflow:hidden}
-			#preloader img{height:400px; position:absolute; left:0px; top:0px; }
+			#preloader{position:relative; background:#333; width:491px; height:400px; }
+			#preloader .progress{background:#fff; position:absolute; width:491px; bottom:0px; left:0px; height:0%; }
+			#preloader img{ width:493px; height:402px; position:absolute; left:-1px; top:-1px; }
 			.logos img{margin-top:70px;height:40px;margin-right:45px;}
       .logos-bottom img{margin-top:20px;height:18px;}
 			#start{width:100px; position:absolute; top:50%; left:50%; margin-left:-50px; margin-top:-50px; '. (($ipad == true) ? "display:block " : "display:none ") .' }
