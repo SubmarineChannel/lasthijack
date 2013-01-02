@@ -42,6 +42,9 @@
 							<img src="images/logos/npo_logo.png" />
 							<img src="images/logos/zdf_logo.png" />
 						</div>
+            <div class="logos logos-bottom">
+              <img src="images/logos/mediafonds.png" />
+            </div>
 					</td>
 				</tr>
 			</table>

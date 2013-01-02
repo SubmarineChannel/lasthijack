@@ -21,7 +21,8 @@
 <body>
 <div id="container">
 <video id="video" autoplay="autoplay">
-	<source src="video/LastHijack.mp4" type="video/mp4" />
+	<source src="/video/LastHijack.mp4" type="video/mp4" />
+  <source src="/video/LastHijack.ogv" type="video/ogg" />
 </video>
 <?php
 foreach($itemArray as $key => $var){

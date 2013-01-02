@@ -47,6 +47,9 @@
 							<img src="images/logos/npo_logo.png" />
 							<img src="images/logos/zdf_logo.png" />
 						</div>
+            <div class="logos logos-bottom">
+              <img src="images/logos/mediafonds.png" />
+            </div>
 					</td>
 				</tr>
 			</table>
@@ -60,7 +63,8 @@
 			#preloader{position:relative; background:#333; width:491px; height:400px; overflow:hidden;}
 			#preloader .progress{background:#fff; position:absolute; width:491px; bottom:0px; left:0px; height:0%; overflow:hidden}
 			#preloader img{height:400px; position:absolute; left:0px; top:0px; }
-			.logos img{margin-top:100px;height:40px;margin-right:45px;}
+			.logos img{margin-top:70px;height:40px;margin-right:45px;}
+      .logos-bottom img{margin-top:20px;height:18px;}
 			#start{width:100px; position:absolute; top:50%; left:50%; margin-left:-50px; margin-top:-50px; '. (($ipad == true) ? "display:block " : "display:none ") .' }
 		',
 		"javascript" => '

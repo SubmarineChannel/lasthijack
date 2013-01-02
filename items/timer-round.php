@@ -82,7 +82,7 @@
           
           return {
             start: function(event, options){
-              console.log("timerRound.start");
+              //console.log("timerRound.start");
               
               // Check if element can be found
               if ($("#" + options.elementID).length == 0) {
