@@ -44,6 +44,7 @@
 						</div>
             <div class="logos logos-bottom">
               <img src="images/logos/mediafonds.png" />
+							<img src="images/logos/filmfonds.png" />
             </div>
 					</td>
 				</tr>
