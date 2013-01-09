@@ -13,6 +13,16 @@ video{position:absolute; min-width:100%; min-height:100%; left:50%; top:50%}
 #menu{width:100%; position:absolute; left:0px; top:10px; display:none}
 td{text-align:center}
 .item{position:absolute; left:50%; top:50%; display:none}
+div#npo_button_wrapper {
+    position:absolute;
+    top:10px;
+		right:10px;
+    z-index:100;
+    height:29px;
+    border:0px;
+}
+div#npo_button_container {
+} 
 <?php
 $itemArray = array();
 foreach (glob("../items/*.php") as $filename){

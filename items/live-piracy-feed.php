@@ -244,6 +244,9 @@ $itemArray["live-piracy-feed"] = array(
 		
 		this.moveNext = function() {
 			// Wait for n seconds
+			if (_this.items.length < 2) {
+				return;
+			}
 			setTimeout(function() {
 				// Move container number of pixels up of the current item
 				_this.container.animate({
